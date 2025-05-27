@@ -25,7 +25,7 @@ public class FareCalculationService {
 		try {
 			
 			ResponseEntity<Object> validate=validateRequest(request);
-			if(validate==null)
+			if(validate!=null)
 				return validate;
 			
 			double distanceCharge= request.getDistance()*1.5;
@@ -82,7 +82,7 @@ public class FareCalculationService {
 			return new ResponseEntity<Object>("request id is not there",null, HttpStatus.BAD_REQUEST);
 		}
 		
-		if( request.getRideId().matches("R\\d{5}") ) {
+		if(! request.getRideId().matches("R\\d{5}") ) {
 			return new ResponseEntity<Object>("request id is not in format",null, HttpStatus.BAD_REQUEST);
 		}
 		
